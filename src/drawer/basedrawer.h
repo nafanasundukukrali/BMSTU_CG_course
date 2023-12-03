@@ -1,13 +1,9 @@
-#ifndef BASEDRAWER_H
-#define BASEDRAWER_H
+#pragma once
 
-#include <utils/point/point.h>
-#include <utils/intensity/intensity.h>
+#include <utils/vector3d/vector3d.h>
 
 class BaseDrawer
 {
 public:
-    virtual void draw_pixel(const Vector3D &position, const Intensity &intensity) = 0;
+    virtual void draw_pixel(const Vector3D &position, const Vector3D &intensity) = 0;
 };
-
-#endif // BASEDRAWER_H

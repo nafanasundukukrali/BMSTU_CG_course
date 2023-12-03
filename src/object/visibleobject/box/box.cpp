@@ -49,11 +49,11 @@ bool Box::hit(const Ray& r, const double t_min, const double t_max, HitInfo& dat
 
     double t = tmin;
 
-    if (t < 0)
+    if (t < 1e-9)
     {
         t = tmax;
 
-        if (t < 0)
+        if (t < 1e-9)
             return false;
     }
 

@@ -57,9 +57,22 @@ set(PROJECT_SOURCES
   builder/rook/rook.cpp
   builder/chessdesk/chessdesk.h
   builder/chessdesk/chessdesk.cpp
-#  scene/scene.h
-#  scene/scene.cpp
-
+  scene/scene.h
+  scene/scene.cpp
+  drawer/basedrawer.h
+  drawer/qtdrawer.cpp
+  drawer/qtdrawer.h
+  utils/baseexception/baseexception.h
+  scene/exceptionscene.h
+  facade/facade.h
+  scenemanager/scenemanager.h
+  scenemanager/scenemanager.cpp
+  factory/abstractfactory.h
+  factory/qtdrawerfactory/qtdrawerfactory.h
+  factory/qtdrawerfactory/qtdrawerfactory.cpp
+  mainwindow.h
+  mainwindow.ui
+  mainwindow.cpp
   reader/stl_reader.h
   main.cpp
 )

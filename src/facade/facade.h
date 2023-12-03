@@ -1,21 +1,18 @@
-#ifndef FACADE_H
-#define FACADE_H
+#pragma once
 
-#include <managers/managersholder.h>
-#include <command/basecommand.h>
+#include <scenemanager/scenemanager.h>
+//#include <command/basecommand.h>
 
 class Facade {
 public:
     Facade() = delete;
-    Facade(std::shared_ptr<QPixmap> pixmap):
-        _managers_holder(std::make_shared<ManagersHolder>(pixmap)) {};
+    Facade(std::shared_ptr<QPixmap> pixmap, const uint start_count):
+        _manager(std::make_shared<SceneManager>(pixmap, start_count)) {};
 
     ~Facade() = default;
 
-    void execute(BaseCommand &command);
+//    void execute(BaseCommand &command);
 
 private:
-    std::shared_ptr<ManagersHolder> _managers_holder;
+    std::shared_ptr<SceneManager> _manager;
 };
-
-#endif // FACADE_H

@@ -1,13 +1,11 @@
-#ifndef SCENEMANAGER_H
-#define SCENEMANAGER_H
+#pragma once
 
-#include <managers/basemanager.h>
 #include <scene/scene.h>
 
-class SceneManager: public BaseManager
+class SceneManager
 {
 public:
-    SceneManager(std::shared_ptr<QPixmap> pixmap);
+    SceneManager(std::shared_ptr<QPixmap> pixmap, const uint start_count);
     ~SceneManager() = default;
     explicit SceneManager(const SceneManager &);
     SceneManager(SceneManager &&) noexcept;
@@ -16,5 +14,3 @@ public:
 private:
     std::shared_ptr<Scene> _scene;
 };
-
-#endif // SCENEMANAGER_H

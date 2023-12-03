@@ -1,5 +1,4 @@
-#ifndef QTDRAWER_H
-#define QTDRAWER_H
+#pragma once
 
 #include <drawer/basedrawer.h>
 #include <QPainter>
@@ -17,9 +16,7 @@ public:
         _painter->end();
     }
 
-    void draw_pixel(const Vector3D &position, const Intensity &intensity) override;
+    void draw_pixel(const Vector3D &position, const Vector3D &intensity) override;
 private:
     std::shared_ptr<QPainter> _painter;
 };
-
-#endif // QTDRAWER_H
