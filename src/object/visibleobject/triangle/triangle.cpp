@@ -68,3 +68,15 @@ bool Triangle::hit(const Ray& r, const double t_min, const double t_max, HitInfo
     return true;
 }
 
+void Triangle::move(const Vector3D &d)
+{
+    for (size_t i = 0; i < 3; i++)
+        for (size_t j = 0; j < 3; j++)
+            _points[i][j] += d[j];
+
+    for (size_t j = 0; j < 3; j++)
+        _center[j] += d[j];
+
+    Triangle::update();
+}
+

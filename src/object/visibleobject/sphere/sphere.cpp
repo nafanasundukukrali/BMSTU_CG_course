@@ -40,3 +40,11 @@ bool Sphere::hit(const Ray& r, const double t_min, const double t_max, HitInfo& 
 
     return true;
 }
+
+void Sphere::move(const Vector3D &d)
+{
+    for (size_t j = 0; j < 3; j++)
+        _center[j] += d[j];
+
+    Sphere::update();
+}

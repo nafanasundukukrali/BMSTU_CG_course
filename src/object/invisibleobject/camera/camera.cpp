@@ -53,3 +53,27 @@ bool Camera::hit(const Ray &r, const double tmin, const double tmax, HitInfo &da
 {
     return false;
 }
+
+void Camera::move(const Vector3D &d)
+{
+    _center += d;
+    Camera::update();
+}
+
+
+void Camera::rotate(const Vector3D &d)
+{
+    double f1 = _direction.x(), f2 = _direction.z(), x1, y1, z1;
+
+    x1 = f1 * std::cos(d.y()) + f2 * std::cos(d.z());
+    y1 = _direction.y();
+    z1 = - f1 * std::sin(d.y()) + f2 * std::cos(d.y());
+
+    f1 = y1;
+    f2 = z1;
+
+    _direction = Vector3D(x1, y1, z1);
+
+    Camera::update();
+}
+

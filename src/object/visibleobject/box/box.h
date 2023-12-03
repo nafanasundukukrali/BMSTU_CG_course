@@ -19,6 +19,7 @@ public:
 
     void update() override;
     bool hit(const Ray& r, const double tmin, const double tmax, HitInfo& data) const override;
+    void move(const Vector3D &d) override;
 
 private:
     Vector3D _dimensions;

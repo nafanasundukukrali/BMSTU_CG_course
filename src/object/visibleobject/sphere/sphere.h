@@ -18,6 +18,8 @@ public:
 
     void update() override;
     bool hit(const Ray& r, const double t_min, const double t_max, HitInfo& data) const override;
+    void move(const Vector3D &d) override;
+
 private:
     double _radius;
 };

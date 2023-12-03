@@ -77,3 +77,11 @@ bool Box::hit(const Ray& r, const double t_min, const double t_max, HitInfo& dat
 
     return true;
 }
+
+void Box::move(const Vector3D &d)
+{
+    for (size_t j = 0; j < 3; j++)
+        _center[j] += d[j];
+
+    Box::update();
+}

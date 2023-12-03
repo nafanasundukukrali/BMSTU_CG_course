@@ -10,6 +10,7 @@ public:
     virtual void update() = 0;
     virtual bool is_visible() = 0;
     virtual bool hit(const Ray &r, const double tmin, const double tmax, HitInfo &data) const = 0;
+    virtual void move(const Vector3D &) = 0;
 
     BoundingBox boundingBox() const
     {

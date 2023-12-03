@@ -39,6 +39,27 @@ set(PROJECT_SOURCES
   object/visibleobject/sphere/sphere.cpp
   object/visibleobject/triangle/triangle.h
   object/visibleobject/triangle/triangle.cpp
+  object/visibleobject/model/model.h
+  object/visibleobject/model/model.cpp
+  builder/basebuilder.h
+  builder/basebuilder.cpp
+  builder/pawn/pawn.h
+  builder/pawn/pawn.cpp
+  builder/bishop/bishop.h
+  builder/bishop/bishop.cpp
+  builder/king/king.h
+  builder/king/king.cpp
+  builder/knight/knight.h
+  builder/knight/knight.cpp
+  builder/queen/queen.h
+  builder/queen/queen.cpp
+  builder/rook/rook.h
+  builder/rook/rook.cpp
+  builder/chessdesk/chessdesk.h
+  builder/chessdesk/chessdesk.cpp
+#  scene/scene.h
+#  scene/scene.cpp
+
   reader/stl_reader.h
   main.cpp
 )
@@ -56,6 +77,7 @@ set(DEST_MODELS_PATH ${CMAKE_CURRENT_BINARY_DIR}/models)
 
 add_compile_definitions(MODELS_PATH="${DEST_MODELS_PATH}/")
 add_compile_definitions(MODELS_FILE_TYPE=".stl")
+add_compile_definitions(BASE_CELL_SIZE=39)
 
 add_custom_command(
     TARGET ${PROJECT_NAME}

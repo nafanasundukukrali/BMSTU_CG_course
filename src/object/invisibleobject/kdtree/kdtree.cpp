@@ -2,12 +2,14 @@
 
 KDTree::KDTree(std::vector<std::shared_ptr<Object>> objects)
 {
-    rootNode = create_tree(objects, 0);
+    _root_node = create_tree(objects, 0);
+    _boundingBox = _root_node->boundingBox;
 }
 
-void KDTree::update(std::vector<std::shared_ptr<Object>> objects)
+void KDTree::update()
 {
-    rootNode = create_tree(objects, 0);
+    _root_node->update();
+    _boundingBox = _root_node->boundingBox;
 }
 
 std::shared_ptr<KDTree::KDNode> KDTree::create_tree(const std::vector<std::shared_ptr<Object>> objects, const int depth)
@@ -82,8 +84,8 @@ bool KDTree::hit(const Ray& r, const double tmin, const double tmax, HitInfo &da
 {
     data.t = tmax;
 
-    if (rootNode)
-        return rootNode->hit(r, tmin, tmax, data);
+    if (_root_node)
+        return _root_node->hit(r, tmin, tmax, data);
 
     throw "No tree!";
 }
@@ -139,4 +141,140 @@ bool KDTree::KDNode::hit(const Ray& r, const double tmin, const double tmax, Hit
             closest_hit = data.t;
 
     return closest_hit < tmax;
+}
+
+void KDTree::KDNode::update()
+{
+    if (left)
+    {
+        left->update();
+        boundingBox = left->boundingBox;
+    }
+
+    if (!left && right)
+    {
+        right->update();
+        boundingBox = right->boundingBox;
+    }
+    else if (left && right)
+    {
+        right->update();
+        boundingBox.expand(right->boundingBox);
+    }
+
+    if (objects.size())
+    {
+        boundingBox = objects[0]->boundingBox();
+
+        for (auto& entity : objects)
+            boundingBox.expand(entity->boundingBox());
+
+        return;
+    }
+}
+
+
+void KDTree::delete_node(const double min_x, const double min_y, const double max_x, const double max_y)
+{
+    _root_node = _root_node->delete_node(min_x, min_y, max_x, max_y);
+    update();
+}
+
+void KDTree::insert_node(std::shared_ptr<Object> object)
+{
+    _root_node = _root_node->insert_node(object);
+    update();
+}
+
+
+std::shared_ptr<KDTree::KDNode> KDTree::KDNode::insert_node(std::shared_ptr<Object> object)
+{
+    Vector3D min = boundingBox.min();
+    Vector3D max = boundingBox.max();
+    Vector3D center = object->center();
+
+    if (min.x() <= center.x() && min.y() <= center.y() && min.z() <= center.z() &&
+                    max.x() >= center.x() && max.y() >= center.y() && max.z() >= center.z())
+    {
+
+        if (objects.size() > 0)
+        {
+            objects.emplace_back(object);
+        }
+        else
+        {
+            Vector3D l_min = left->boundingBox.min();
+            Vector3D l_max = left->boundingBox.max();
+
+            if (l_min.x() <= center.x() && l_min.y() <= center.y() && l_min.z() <= center.z() &&
+                    l_max.x() >= center.x() && l_max.y() >= center.y() && l_max.z() >= center.z())
+                left = left->insert_node(object);
+            else
+                right = right->insert_node(object);
+        }
+    }
+
+    return shared_from_this();
+}
+
+bool KDTree::KDNode::validate_bounding_box_in_params(const double min_x, const double min_y, const double max_x,
+                                                     const double max_y, const BoundingBox &box)
+{
+    Vector3D min = box.min();
+    Vector3D max = box.max();
+
+    if (min.x() <= min_x && min.y() <= min_y && max.x() >= max_x && max.y() >= max_y)
+        return true;
+
+    return false;
+}
+
+bool KDTree::KDNode::validate_params_in_boinding_box(const double min_x, const double min_y, const double max_x,
+                                                     const double max_y, const BoundingBox &box)
+{
+    Vector3D min = box.min();
+    Vector3D max = box.max();
+
+    if (min.x() >= min_x && min.y() >= min_y && max.x() <= max_x && max.y() <= max_y && max.z() > 0)
+        return true;
+
+    return false;
+}
+
+std::shared_ptr<KDTree::KDNode> KDTree::KDNode::delete_node(const double min_x, const double min_y, const double max_x, const double max_y)
+{
+    if (max_x < boundingBox.min().x() ||  max_y < boundingBox.min().y() ||
+            min_x > boundingBox.max().x() || min_y > boundingBox.max().y())
+        return shared_from_this();
+
+    if (objects.size() == 0)
+    {
+        if (max_x < boundingBox.min().x() ||  max_y < boundingBox.min().y() ||
+                min_x > boundingBox.max().x() || min_y > boundingBox.max().y())
+            return shared_from_this();
+
+        if (right && left)
+        {
+            left = left->delete_node(min_x, min_y, max_x, max_y);
+            right = right->delete_node(min_x, min_y, max_x, max_y);
+        }
+    }
+    else
+    {
+        size_t i = 0;
+
+        while (i < objects.size() &&
+               !validate_params_in_boinding_box(min_x, min_y, max_x, max_y, objects[i]->boundingBox()))
+            i++;
+
+        if (i < objects.size())
+        {
+            objects.erase(objects.begin() + i);
+
+            if (!objects.size())
+                return nullptr;
+        }
+    }
+
+    return shared_from_this();
 }

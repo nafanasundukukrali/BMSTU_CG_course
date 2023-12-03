@@ -18,6 +18,7 @@ public:
     Ray get_ray(const Vector3D &hit_point) const;
     virtual void update() override;
     virtual bool hit(const Ray &r, const double tmin, const double tmax, HitInfo &data) const override;
+    void move(const Vector3D &d) override;
 
 private:
     Vector3D _position;

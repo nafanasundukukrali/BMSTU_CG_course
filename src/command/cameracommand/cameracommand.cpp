@@ -1,0 +1,2 @@
+#include "cameracommand.h"
+
