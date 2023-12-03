@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
 
    _scene = std::make_shared<QPixmap>(1000, 900);
 
-   _facade = std::unique_ptr<Facade>(new Facade(_scene, 64));
+   _facade = std::unique_ptr<Facade>(new Facade(_scene, 2));
 
     ui->label_16->setPixmap(*_scene);
 }

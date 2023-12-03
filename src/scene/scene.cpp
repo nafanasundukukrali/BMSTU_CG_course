@@ -129,7 +129,7 @@ Vector3D Scene::ray_traice(const Ray &r, const int depth, HitInfo &data)
 
         data.material->get_reflect_ray(r, data, reflection, reflected_ray);
 
-        if (depth < 3 && reflection.x() && reflection.y() && reflection.z())
+        if (depth < 5 && reflection.x() && reflection.y() && reflection.z())
             itensity += data.material->reflective() * ray_traice(reflected_ray, depth + 1, buffer2_data);
     }
 

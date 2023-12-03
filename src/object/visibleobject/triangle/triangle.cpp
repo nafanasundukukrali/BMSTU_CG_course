@@ -6,7 +6,7 @@ Triangle::Triangle(Vector3D p1, Vector3D p2, Vector3D p3, Vector3D normal, std::
     _points[0] = p1;
     _points[1] = p2;
     _points[2] = p3;
-    _plane_normal = -normal;
+    _plane_normal = normal;
     _plane_normal.normalize();
 
     Triangle::update();
@@ -34,13 +34,13 @@ bool Triangle::hit(const Ray& r, const double t_min, const double t_max, HitInfo
     Vector3D edge2 = _points[2] - _points[0];
     Vector3D e1e2 = edge1.cross(edge2).normalized();
 
-    if (e1e2.dot(r.direction()) > 1e-9f)
+    if (e1e2.dot(r.direction()) < 0.0)
         e1e2 = -e1e2;
 
     Vector3D pvec = r.direction().cross(edge2);
     double det = edge1.dot(pvec);
 
-    if (det <= 1e-9f)
+    if (det <= 0.0)
         return false;
 
     float inv_det = 1.0f / det;
