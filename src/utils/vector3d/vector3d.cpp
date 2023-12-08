@@ -32,6 +32,16 @@ Vector3D& Vector3D::operator += (const Vector3D &v)
     return *this;
 }
 
+
+Vector3D& Vector3D::operator = (const Vector3D &v)
+{
+    _points[0] = v[0];
+    _points[1] = v[1];
+    _points[2] = v[2];
+
+    return *this;
+}
+
 Vector3D& Vector3D::operator -= (const Vector3D &v)
 {
     _points[0] -= v[0];

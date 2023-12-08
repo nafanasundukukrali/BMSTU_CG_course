@@ -14,6 +14,7 @@ public:
         const Vector3D& operator + () const;
         Vector3D operator-() const;
         Vector3D& operator += (const Vector3D &v2);
+        Vector3D& operator = (const Vector3D &v2);
         Vector3D& operator -= (const Vector3D &v2);
         Vector3D& operator -= (const double &v2);
         Vector3D& operator *= (const Vector3D &v2);

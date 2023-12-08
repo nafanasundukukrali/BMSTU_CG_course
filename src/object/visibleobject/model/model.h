@@ -9,7 +9,6 @@ class Model: public VisibleObject
 public:
     Model() = default;
     ~Model() = default;
- //   void material(std::shared_ptr<const Matrial> material);
     void update() override;
     bool hit(const Ray& r, const double tmin, const double tmax, HitInfo& data) const override;
     void move(const Vector3D &d) override;

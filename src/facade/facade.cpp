@@ -1,6 +1,6 @@
 #include "facade.h"
 
-void Facade::execute(BaseCommand &command) {
-    command.set_managers(_managers_holder);
-    command.execute();
+std::string Facade::execute(BaseCommand *command) {
+    command->set_manager(_manager);
+    return command->execute();
 }

@@ -2,18 +2,31 @@
 
 Scene::Scene(std::shared_ptr<QPixmap> pixmap, const uint count)
 {
-    _camera = std::make_shared<Camera>(Vector3D(250, 250, 250), Vector3D(1, 1, 1),
+    _camera = std::make_shared<Camera>(Vector3D(-250, -250, 250), Vector3D(-1, -1, -1),
                                        static_cast<double>(pixmap->width()) / pixmap->height() /*static_cast<double>(1000) / 500*/);
     _light_source = std::make_shared<LightSource>(Vector3D(-500, -500, 500), Vector3D(1, 1, 1));
 
     _builders = {BishopBuilder(), KingBuilder(), KnightBuilder(), PawnBuilder(), QueenBuilder(), RookBuilder(),
-                BishopBuilder(0), KingBuilder(0), KnightBuilder(), PawnBuilder(0), QueenBuilder(0), RookBuilder(0)};
+                BishopBuilder(0), KingBuilder(0), KnightBuilder(0), PawnBuilder(0), QueenBuilder(0), RookBuilder(0)};
 
     _pixmap = pixmap;
 
+    for (size_t i = 0; i < 8; i++)
+    {
+        std::vector<bool> vector;
+        for (size_t j = 0; j < 8; j++)
+            vector.push_back(false);
+        _actual_figures.emplace_back(vector);
+    }
+
     _start_scene_generate(count);
 
-    _draw();
+    draw();
+}
+
+void Scene::change_reflect_and_shine_k(const Vector3D &ref, const double &p)
+{
+    _models->material(ref, p);
 }
 
 void Scene::_convert_co_ords_from_dest_to_normal(double &letter, double &number)
@@ -83,7 +96,7 @@ void Scene::add_model(uint builder_i, bool color, uint letter, uint number)
     _actual_figures[letter][number] = true;
 }
 
-void Scene::_draw()
+void Scene::draw()
 {
     std::mutex pixmap_mutex;
     const int width = _pixmap->width(), height = _pixmap->height();
@@ -106,30 +119,37 @@ void Scene::_draw()
         drawer->draw_pixel(Vector3D(i, height - j, 0), intensity);
         image_mutex.unlock();
     });
+    painter->end();
 }
 
 Vector3D Scene::ray_traice(const Ray &r, const int depth, HitInfo &data)
 {
     Vector3D itensity(0.0f);
 
-    if (_models->hit(r, 0.0f, MAXFLOAT, data))
+    if (_models->hit(r, -1e-3f, MAXFLOAT, data))
     {
         const Ray sunray = _light_source->get_ray(data.hit_point);
         Vector3D sunlight = _light_source->intensity();
         HitInfo buffer_data;
 
-        if (_models->hit(sunray, -1e-9f, MAXFLOAT, buffer_data))
+        if (_models->hit(sunray, -1e-3f, MAXFLOAT, buffer_data))
             sunlight *= 0.5f;
-
-        itensity += data.material->ambient() + data.material->diffuse() * sunlight;
 
         HitInfo buffer2_data;
         Vector3D reflection;
         Ray reflected_ray;
+        double shine = 0;
 
-        data.material->get_reflect_ray(r, data, reflection, reflected_ray);
+        data.material->get_reflect_ray(r, data, reflection, reflected_ray, shine);
 
-        if (depth < 5 && reflection.x() && reflection.y() && reflection.z())
+        Vector3D inv_reflect =  Vector3D(1.0f) - data.material->reflective();
+
+        itensity += (data.material->ambient() + data.material->diffuse() * sunlight) * inv_reflect;
+
+        if (data.material->p())
+            itensity += shine * sunlight * data.material->diffuse() * inv_reflect;
+
+        if (depth < 3 && (reflection.x() || reflection.y() || reflection.z()))
             itensity += data.material->reflective() * ray_traice(reflected_ray, depth + 1, buffer2_data);
     }
 

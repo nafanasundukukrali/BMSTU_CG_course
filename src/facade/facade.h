@@ -1,7 +1,6 @@
 #pragma once
 
-#include <scenemanager/scenemanager.h>
-//#include <command/basecommand.h>
+#include <command/basecommand.h>
 
 class Facade {
 public:
@@ -11,8 +10,7 @@ public:
 
     ~Facade() = default;
 
-//    void execute(BaseCommand &command);
-
+    std::string execute(BaseCommand *command);
 private:
     std::shared_ptr<SceneManager> _manager;
 };

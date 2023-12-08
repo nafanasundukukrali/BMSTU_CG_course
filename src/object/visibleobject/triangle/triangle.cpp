@@ -34,13 +34,13 @@ bool Triangle::hit(const Ray& r, const double t_min, const double t_max, HitInfo
     Vector3D edge2 = _points[2] - _points[0];
     Vector3D e1e2 = edge1.cross(edge2).normalized();
 
-    if (e1e2.dot(r.direction()) < 0.0)
+    if (e1e2.dot(r.direction()) < 1e-9f)
         e1e2 = -e1e2;
 
     Vector3D pvec = r.direction().cross(edge2);
     double det = edge1.dot(pvec);
 
-    if (det <= 0.0)
+    if (det <= 1e-9f)
         return false;
 
     float inv_det = 1.0f / det;

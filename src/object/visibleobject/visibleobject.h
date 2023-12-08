@@ -9,4 +9,10 @@ public:
     {
         return true;
     }
+
+    virtual void material(const Vector3D &ref, const double &p) override
+    {
+        _material->_reflective = ref;
+        _material->_p = p;
+    }
 };

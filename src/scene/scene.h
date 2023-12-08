@@ -15,6 +15,7 @@
 #include "tbb/tbb.h"
 #include <mutex>
 #include "exceptionscene.h"
+#include <cmath>
 #define emit
 
 #include <QPixmap>
@@ -28,15 +29,18 @@ public:
     ~Scene() = default;
     explicit Scene(const Scene &);
     Scene(Scene &&) noexcept;
+    void change_reflect_and_shine_k(const Vector3D &ref, const double &p);
     void delete_model(uint letter, uint number);
     void add_model(const uint builder_id, bool color, uint letter, uint number);
+    void draw();
 private:
-    void _draw();
     Vector3D ray_traice(const Ray &r, const int depth, HitInfo &data);
     void _convert_co_ords_from_dest_to_normal(double &letter, double &number);
     void _move_by_cell_co_ords(std::shared_ptr<Model> model, uint letter, uint number);
+
     double delta = - BASE_CELL_SIZE * 4 + BASE_CELL_SIZE / 2;
     double half = BASE_CELL_SIZE;
+
     void _start_scene_generate(const size_t count);
     void _generate_random_figure();
     std::shared_ptr<Camera> _camera;
@@ -44,5 +48,5 @@ private:
     std::shared_ptr<KDTree> _models;
     std::vector<BaseBuilder> _builders;
     std::shared_ptr<QPixmap> _pixmap;
-    std::vector<std::vector<bool>> _actual_figures = std::vector<std::vector<bool>>(8, std::vector<bool>(8, false));
+    std::vector<std::vector<bool>> _actual_figures;
 };

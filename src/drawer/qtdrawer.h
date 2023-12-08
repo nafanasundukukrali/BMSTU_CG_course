@@ -11,10 +11,7 @@ public:
     explicit QtDrawer(std::shared_ptr<QPainter>);
     explicit QtDrawer(const QtDrawer &);
     QtDrawer(QtDrawer &&) noexcept;
-    ~QtDrawer()
-    {
-        _painter->end();
-    }
+    ~QtDrawer();
 
     void draw_pixel(const Vector3D &position, const Vector3D &intensity) override;
 private:

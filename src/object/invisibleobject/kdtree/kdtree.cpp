@@ -12,6 +12,29 @@ void KDTree::update()
     _boundingBox = _root_node->boundingBox;
 }
 
+void KDTree::material(const Vector3D &ref, const double &p)
+{
+    _root_node->material(ref, p);
+}
+
+void KDTree::KDNode::material(const Vector3D &ref, const double &p)
+{
+    if (left)
+    {
+        left->material(ref, p);
+    }
+
+    if (right)
+    {
+        right->material(ref, p);
+    }
+
+    if (objects.size())
+        for (auto& object : objects)
+            if (!object->is_chess_desk())
+                object->material(ref, p);
+}
+
 std::shared_ptr<KDTree::KDNode> KDTree::create_tree(const std::vector<std::shared_ptr<Object>> objects, const int depth)
 {
     auto node = std::make_shared<KDNode>();
@@ -26,10 +49,10 @@ std::shared_ptr<KDTree::KDNode> KDTree::create_tree(const std::vector<std::share
 
     Vector3D average_position(0.0f);
 
-    for (auto& entity : objects)
+    for (auto& object : objects)
     {
-        average_position += entity->center();
-        node->boundingBox.expand(entity->boundingBox());
+        average_position += object->center();
+        node->boundingBox.expand(object->boundingBox());
     }
 
     average_position /= objects.size();
@@ -166,8 +189,8 @@ void KDTree::KDNode::update()
     {
         boundingBox = objects[0]->boundingBox();
 
-        for (auto& entity : objects)
-            boundingBox.expand(entity->boundingBox());
+        for (auto& object : objects)
+            boundingBox.expand(object->boundingBox());
 
         return;
     }

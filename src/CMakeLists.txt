@@ -10,8 +10,8 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets Core Gui REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Core Gui REQUIRED)
+find_package(Qt6 COMPONENTS Widgets Core Gui REQUIRED)
+#find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets Core Gui REQUIRED)
 find_package(TBB CONFIG REQUIRED)
 find_package(Threads REQUIRED)
 
@@ -65,8 +65,11 @@ set(PROJECT_SOURCES
   utils/baseexception/baseexception.h
   scene/exceptionscene.h
   facade/facade.h
+  facade/facade.cpp
   scenemanager/scenemanager.h
   scenemanager/scenemanager.cpp
+  command/basecommand.h
+  command/scenecommand/scenecommand.h
   factory/abstractfactory.h
   factory/qtdrawerfactory/qtdrawerfactory.h
   factory/qtdrawerfactory/qtdrawerfactory.cpp
@@ -74,7 +77,8 @@ set(PROJECT_SOURCES
   mainwindow.ui
   mainwindow.cpp
   reader/stl_reader.h
-  main.cpp
+  loaddialog/loaddialog.h loaddialog/loaddialog.cpp
+  main_release.cpp
 )
 
 add_executable(visual-chess
@@ -83,12 +87,16 @@ add_executable(visual-chess
 
 include_directories(
 ${PROJECT_SOURCE_DIR}/utils
+${PROJECT_SOURCE_DIR}/loadimage
 ${PROJECT_SOURCE_DIR}/models)
 
 set(SOURCE_MODELS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/models)
 set(DEST_MODELS_PATH ${CMAKE_CURRENT_BINARY_DIR}/models)
+set(LOAD_IMAGE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/loadimage)
+set(LOAD_MODELS_DEST_PATH ${CMAKE_CURRENT_BINARY_DIR}/loadimage)
 
 add_compile_definitions(MODELS_PATH="${DEST_MODELS_PATH}/")
+add_compile_definitions(LOADING_PATH="${LOAD_MODELS_DEST_PATH}/load.gif")
 add_compile_definitions(MODELS_FILE_TYPE=".stl")
 add_compile_definitions(BASE_CELL_SIZE=39)
 
@@ -96,6 +104,12 @@ add_custom_command(
     TARGET ${PROJECT_NAME}
     POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${SOURCE_MODELS_PATH} ${DEST_MODELS_PATH}
+)
+
+add_custom_command(
+    TARGET ${PROJECT_NAME}
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${LOAD_IMAGE_PATH} ${LOAD_MODELS_DEST_PATH}
 )
 
 target_link_libraries(visual-chess PRIVATE  
