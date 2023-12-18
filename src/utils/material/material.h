@@ -6,6 +6,8 @@
 class Material
 {
     friend class VisibleObject;
+    friend class  BaseBuilder;
+    friend class Model;
 public:
     Material(const Vector3D &ambient, const Vector3D &diffuse, const Vector3D &reflective, const double &p = 0):
         _ambient(diffuse * ambient),

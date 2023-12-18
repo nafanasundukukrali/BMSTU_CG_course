@@ -32,6 +32,10 @@ public:
     void change_reflect_and_shine_k(const Vector3D &ref, const double &p);
     void delete_model(uint letter, uint number);
     void add_model(const uint builder_id, bool color, uint letter, uint number);
+    void change_light_source_color(const Vector3D &color);
+    void move_camera(const Vector3D &);
+    void move_lightsource(const Vector3D &);
+    void rotate_camera(const Vector3D &);
     void draw();
 private:
     Vector3D ray_traice(const Ray &r, const int depth, HitInfo &data);

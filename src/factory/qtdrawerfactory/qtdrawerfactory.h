@@ -1,5 +1,4 @@
-#ifndef QTDRAWERFACTORY_H
-#define QTDRAWERFACTORY_H
+#pragma once
 
 #include <factory/abstractfactory.h>
 #include <drawer/qtdrawer.h>
@@ -9,5 +8,3 @@ class QtDrawerFactory : public AbstractFactory {
 public:
     std::unique_ptr<BaseDrawer> create_drawer(std::shared_ptr<QPainter> value) override;
 };
-
-#endif // QTDRAWERFACTORY_H

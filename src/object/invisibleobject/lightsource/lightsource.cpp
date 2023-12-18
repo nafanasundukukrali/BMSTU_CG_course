@@ -27,6 +27,10 @@ bool LightSource::hit(const Ray &r, const double t_min, const double t_max, HitI
 
 void LightSource::move(const Vector3D &d)
 {
-    _center += d;
-    LightSource::update();
+    _position += d;
+}
+
+void LightSource::intensity(const Vector3D &intens)
+{
+    _intensity = intens;
 }

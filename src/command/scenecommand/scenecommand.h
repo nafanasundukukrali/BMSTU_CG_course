@@ -78,4 +78,26 @@ private:
     Vector3D _color;
 };
 
+class MoveAndRotateScene: public BaseCommand
+{
+public:
+    MoveAndRotateScene(bool camera_move, bool rotate, const Vector3D &kd, const Vector3D &o):
+        _camera_move(camera_move),
+        _rotate(rotate),
+        _kd(kd),
+        _o(o)
+    {};
+
+    std::string execute()
+    {
+        return _scene_manager->move_and_rotate(_camera_move, _rotate, _kd, _o);
+    }
+
+private:
+    bool _camera_move;
+    bool _rotate;
+    Vector3D _kd;
+    Vector3D _o;
+};
+
 

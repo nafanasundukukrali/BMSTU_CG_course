@@ -3,7 +3,6 @@
 bool Material::get_reflect_ray(const Ray& r, const HitInfo &data, Vector3D &ref_k, Ray &reflect_ray, double &shine) const
 {
     reflect_ray = Ray(data.hit_point, data.normal.reflect(r.direction().normalized()));
-//    dif  = _diffuse * data.normal.dot(r.direction().normalized());
     Vector3D norm_rr = reflect_ray.direction().normalized();
     Vector3D min_dir = -r.direction().normalized();
     shine = std::pow(norm_rr.dot(min_dir) / norm_rr.length() / min_dir.length(), _p);

@@ -14,7 +14,7 @@ public:
 
     Vector3D position() const;
     Vector3D intensity() const;
-
+    void intensity(const Vector3D &itensity);
     Ray get_ray(const Vector3D &hit_point) const;
     virtual void update() override;
     virtual bool hit(const Ray &r, const double tmin, const double tmax, HitInfo &data) const override;

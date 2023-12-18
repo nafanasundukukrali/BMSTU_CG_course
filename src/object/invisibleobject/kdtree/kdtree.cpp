@@ -90,14 +90,12 @@ std::shared_ptr<KDTree::KDNode> KDTree::create_tree(const std::vector<std::share
     {
         node->left = create_tree(left_objects, depth + 1);
         node->boundingBox.expand(node->left->boundingBox);
-        node->left->f = true;
     }
 
     if (right_objects.size() > 0)
     {
         node->right = create_tree(right_objects, depth + 1);
         node->boundingBox.expand(node->right->boundingBox);
-        node->right->f = false;
     }
 
     return node;
@@ -133,7 +131,7 @@ bool KDTree::KDNode::hit(const Ray& r, const double tmin, const double tmax, Hit
     }
 
     double tmax_buffer = tmax;
-    bool hit_first = false;
+    bool hit_first = false, hit_second = false;
 
     if (first)
     {
@@ -142,8 +140,6 @@ bool KDTree::KDNode::hit(const Ray& r, const double tmin, const double tmax, Hit
         if (hit_first)
             tmax_buffer = data.t;
     }
-
-    bool hit_second = false;
 
     if (second)
     {
@@ -272,15 +268,13 @@ std::shared_ptr<KDTree::KDNode> KDTree::KDNode::delete_node(const double min_x, 
 
     if (objects.size() == 0)
     {
-        if (max_x < boundingBox.min().x() ||  max_y < boundingBox.min().y() ||
-                min_x > boundingBox.max().x() || min_y > boundingBox.max().y())
-            return shared_from_this();
-
-        if (right && left)
-        {
-            left = left->delete_node(min_x, min_y, max_x, max_y);
+        if (right)
             right = right->delete_node(min_x, min_y, max_x, max_y);
-        }
+        if (left)
+            left = left->delete_node(min_x, min_y, max_x, max_y);
+
+        if (right == nullptr && left == nullptr)
+            return nullptr;
     }
     else
     {

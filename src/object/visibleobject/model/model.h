@@ -6,6 +6,7 @@
 
 class Model: public VisibleObject
 {
+    friend class BaseBuilder;
 public:
     Model() = default;
     ~Model() = default;

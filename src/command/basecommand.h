@@ -1,5 +1,4 @@
-#ifndef BASECOMMAND_H
-#define BASECOMMAND_H
+#pragma once
 
 #include <scenemanager/scenemanager.h>
 #include <memory>
@@ -17,5 +16,3 @@ public:
 protected:
     std::shared_ptr<SceneManager> _scene_manager = nullptr;
 };
-
-#endif // BASECOMMAND_H

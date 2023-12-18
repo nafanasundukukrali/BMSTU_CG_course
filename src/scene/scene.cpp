@@ -2,9 +2,9 @@
 
 Scene::Scene(std::shared_ptr<QPixmap> pixmap, const uint count)
 {
-    _camera = std::make_shared<Camera>(Vector3D(-250, -250, 250), Vector3D(-1, -1, -1),
+    _camera = std::make_shared<Camera>(Vector3D(-250, -250, 250), Vector3D(1, 1, 1),
                                        static_cast<double>(pixmap->width()) / pixmap->height() /*static_cast<double>(1000) / 500*/);
-    _light_source = std::make_shared<LightSource>(Vector3D(-500, -500, 500), Vector3D(1, 1, 1));
+    _light_source = std::make_shared<LightSource>(Vector3D(-250, -250, 250), Vector3D(1, 1, 1));
 
     _builders = {BishopBuilder(), KingBuilder(), KnightBuilder(), PawnBuilder(), QueenBuilder(), RookBuilder(),
                 BishopBuilder(0), KingBuilder(0), KnightBuilder(0), PawnBuilder(0), QueenBuilder(0), RookBuilder(0)};
@@ -154,4 +154,24 @@ Vector3D Scene::ray_traice(const Ray &r, const int depth, HitInfo &data)
     }
 
     return itensity;
+}
+
+void Scene::change_light_source_color(const Vector3D &color)
+{
+    _light_source->intensity(color);
+}
+
+void Scene::move_camera(const Vector3D &kd)
+{
+    _camera->move(kd);
+}
+
+void Scene::move_lightsource(const Vector3D &kd)
+{
+    _light_source->move(kd);
+}
+
+void Scene::rotate_camera(const Vector3D &o)
+{
+    _camera->rotate(o);
 }
