@@ -1,0 +1,131 @@
+<mxfile host="Electron" modified="2023-12-16T07:29:47.727Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="BXuXNfeIidKfluriX4_f" version="21.6.8" type="device">
+  <diagram name="Page-1" id="c7488fd3-1785-93aa-aadb-54a6760d102a">
+    <mxGraphModel dx="484" dy="364" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-5" value="Процесс изменения местоположения объектов сцены&amp;nbsp;" style="swimlane;html=1;startSize=50;fontStyle=0;collapsible=0;horizontal=0;swimlaneLine=1;swimlaneFillColor=#ffffff;strokeWidth=2;whiteSpace=wrap;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="15" y="20" width="1070" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=14;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="-FfgfGZ-kdBo7Im1mb59-5" target="-FfgfGZ-kdBo7Im1mb59-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120.00000000000011" y="100" as="sourcePoint" />
+            <mxPoint x="160" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=block;endFill=1;endSize=14;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="-FfgfGZ-kdBo7Im1mb59-5" source="-FfgfGZ-kdBo7Im1mb59-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-14" value="Считать введённые&lt;br&gt;параметры" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" parent="-FfgfGZ-kdBo7Im1mb59-5" vertex="1">
+          <mxGeometry x="180" y="60" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=14;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="-FfgfGZ-kdBo7Im1mb59-5" source="-FfgfGZ-kdBo7Im1mb59-38" target="-FfgfGZ-kdBo7Im1mb59-28" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="940" y="100.0322580645161" as="sourcePoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-28" value="Вывод&lt;br&gt;изображения" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=throwing;symbol=general;" parent="-FfgfGZ-kdBo7Im1mb59-5" vertex="1">
+          <mxGeometry x="945" y="65" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=block;endFill=1;endSize=14;" parent="-FfgfGZ-kdBo7Im1mb59-5" source="-FfgfGZ-kdBo7Im1mb59-37" target="-FfgfGZ-kdBo7Im1mb59-38" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="780" y="100.00000000000011" as="sourcePoint" />
+            <mxPoint x="740" y="130" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="715" y="50" />
+              <mxPoint x="715" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-37" value="Повернуть камеру&lt;br&gt;вокруг осей" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" parent="-FfgfGZ-kdBo7Im1mb59-5" vertex="1">
+          <mxGeometry x="575" y="10" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-38" value="Выполнить обратную&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;трассировку лучей" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" parent="-FfgfGZ-kdBo7Im1mb59-5" vertex="1">
+          <mxGeometry x="775" y="50" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-39" value="Пользователь&lt;br&gt;нажал кнопку&lt;br&gt;&quot;применить&quot;" style="points=[[0.145,0.145,0],[0.5,0,0],[0.855,0.145,0],[1,0.5,0],[0.855,0.855,0],[0.5,1,0],[0.145,0.855,0],[0,0.5,0]];shape=mxgraph.bpmn.event;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=ellipsePerimeter;outlineConnect=0;aspect=fixed;outline=standard;symbol=signal;" parent="-FfgfGZ-kdBo7Im1mb59-5" vertex="1">
+          <mxGeometry x="70" y="75" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-41" value="Параметры &lt;br&gt;относятся&lt;br&gt;к камере?" style="points=[[0.25,0.25,0],[0.5,0,0],[0.75,0.25,0],[1,0.5,0],[0.75,0.75,0],[0.5,1,0],[0.25,0.75,0],[0,0.5,0]];shape=mxgraph.bpmn.gateway2;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=rhombusPerimeter;outlineConnect=0;outline=none;symbol=none;gwType=exclusive;" parent="-FfgfGZ-kdBo7Im1mb59-5" vertex="1">
+          <mxGeometry x="425" y="75" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;" parent="-FfgfGZ-kdBo7Im1mb59-5" source="-FfgfGZ-kdBo7Im1mb59-58" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="715" y="90" as="targetPoint" />
+            <mxPoint x="695" y="150" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=block;endFill=1;endSize=14;" parent="-FfgfGZ-kdBo7Im1mb59-5" source="aq1K3VyHdzdP4nX3ywdp-1" target="-FfgfGZ-kdBo7Im1mb59-37" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="100" as="sourcePoint" />
+            <mxPoint x="390" y="50" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aq1K3VyHdzdP4nX3ywdp-6" value="Да" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="-FfgfGZ-kdBo7Im1mb59-21">
+          <mxGeometry x="-0.629" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endSize=14;endArrow=block;endFill=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="-FfgfGZ-kdBo7Im1mb59-5" source="-FfgfGZ-kdBo7Im1mb59-41" target="aq1K3VyHdzdP4nX3ywdp-5" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="405" y="140" as="sourcePoint" />
+            <mxPoint x="660" y="190" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="495" y="100" />
+              <mxPoint x="495" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-60" value="Нет" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="-FfgfGZ-kdBo7Im1mb59-59" vertex="1" connectable="0">
+          <mxGeometry x="-0.7836" relative="1" as="geometry">
+            <mxPoint x="30" y="124" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-FfgfGZ-kdBo7Im1mb59-58" value="Переместить&lt;br&gt;камеру" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" parent="-FfgfGZ-kdBo7Im1mb59-5" vertex="1">
+          <mxGeometry x="575" y="110" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aq1K3VyHdzdP4nX3ywdp-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=14;" edge="1" parent="-FfgfGZ-kdBo7Im1mb59-5" source="aq1K3VyHdzdP4nX3ywdp-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="425" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aq1K3VyHdzdP4nX3ywdp-11" value="Нет" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aq1K3VyHdzdP4nX3ywdp-10">
+          <mxGeometry x="-0.2355" y="1" relative="1" as="geometry">
+            <mxPoint y="-19" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aq1K3VyHdzdP4nX3ywdp-1" value="Параметры &lt;br&gt;относятся&lt;br&gt;к повороту?" style="points=[[0.25,0.25,0],[0.5,0,0],[0.75,0.25,0],[1,0.5,0],[0.75,0.75,0],[0.5,1,0],[0.25,0.75,0],[0,0.5,0]];shape=mxgraph.bpmn.gateway2;html=1;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;verticalAlign=top;align=center;perimeter=rhombusPerimeter;outlineConnect=0;outline=none;symbol=none;gwType=exclusive;" vertex="1" parent="-FfgfGZ-kdBo7Im1mb59-5">
+          <mxGeometry x="335" y="75" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="aq1K3VyHdzdP4nX3ywdp-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=block;endFill=1;endSize=14;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="-FfgfGZ-kdBo7Im1mb59-5" source="-FfgfGZ-kdBo7Im1mb59-41" target="-FfgfGZ-kdBo7Im1mb59-58">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="495" y="130" as="sourcePoint" />
+            <mxPoint x="475" y="30" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="450" y="60" />
+              <mxPoint x="525" y="60" />
+              <mxPoint x="525" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aq1K3VyHdzdP4nX3ywdp-3" value="Да" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aq1K3VyHdzdP4nX3ywdp-2">
+          <mxGeometry x="-0.1" y="-1" relative="1" as="geometry">
+            <mxPoint x="11" y="25" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aq1K3VyHdzdP4nX3ywdp-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="-FfgfGZ-kdBo7Im1mb59-5" source="aq1K3VyHdzdP4nX3ywdp-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="715" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aq1K3VyHdzdP4nX3ywdp-5" value="Переместить&lt;br&gt;точечный&lt;br&gt;источник&lt;br&gt;света" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" vertex="1" parent="-FfgfGZ-kdBo7Im1mb59-5">
+          <mxGeometry x="575" y="200" width="120" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

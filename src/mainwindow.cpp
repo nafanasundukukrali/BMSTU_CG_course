@@ -1,12 +1,4 @@
 #include "mainwindow.h"
-#include <QScreen>
-#include <QColor>
-#include <QGraphicsPixmapItem>
-#include <QMessageBox>
-#include <QProgressDialog>
-#include <QFuture>
-#include <QtConcurrent/QtConcurrent>
-#include <command/scenecommand/scenecommand.h>
 
 MainWindow::MainWindow(const uint start_count, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -18,13 +10,7 @@ MainWindow::MainWindow(const uint start_count, QWidget *parent)
     int width = this->frameGeometry().width();
     int height = this->frameGeometry().height();
 
-//    QDesktopWidget wid;
-
-//    int screenWidth = wid.screen()->width();
-//    int screenHeight = wid.screen()->height();
-
-//    this->setGeometry((screenWidth/2)-(width/2),(screenHeight/2)-(height/2),width,height);
-   this->setGeometry(0,0,1200,90);
+   this->setGeometry(0,0,1200,900);
 
    _scene = std::make_shared<QPixmap>(1000, 900);
 
@@ -41,8 +27,37 @@ MainWindow &MainWindow::_make_all_connects()
     connect(ui->pushButtonDelete, &QPushButton::clicked, this, &MainWindow::_on_pushButtonDelete_clicked);
     connect(ui->pushButtonApplyCameraChanges, &QPushButton::clicked, this, &MainWindow::_on_pushButtonApplyCameraChanges_clicked);
     connect(ui->pushButtonApplySpector, &QPushButton::clicked, this, &MainWindow::_on_pushButtonApplySpector_clicked);
+    connect(ui->selectColorButton, &QPushButton::clicked, this, &MainWindow::_on_pushButtonSelectColor_clicked);
+    connect(ui->cameraRadioButton, &QPushButton::clicked, this, &MainWindow::_on_camera_radio_button_clicked);
+    connect(ui->sourceRadioButton, &QPushButton::clicked, this, &MainWindow::_on_intensity_radio_button_clicked);
 
     return *this;
+}
+
+void MainWindow::_on_pushButtonSelectColor_clicked()
+{
+    QString title = "Выбор интенсивности точечного источника света";
+    QColor color = QColorDialog::getColor(last_color, this, title, QColorDialog::DontUseNativeDialog);
+
+    if (color.isValid())
+    {
+        QPalette sample_palette;
+        sample_palette.setColor(QPalette::Window, color);
+        ui->colorLabel->setAutoFillBackground(true);
+        ui->colorLabel->setPalette(sample_palette);
+        last_color = color;
+    }
+}
+
+void MainWindow::_on_camera_radio_button_clicked()
+{
+    ui->TabRotate->setEnabled(true);
+}
+
+void MainWindow::_on_intensity_radio_button_clicked()
+{
+    ui->tabWidgetMoveCamera->setCurrentIndex(0);
+    ui->TabRotate->setDisabled(true);
 }
 
 MainWindow &MainWindow::_add_color_variants()
@@ -79,6 +94,13 @@ MainWindow &MainWindow::_add_select_position_variants()
     ui->colorFigureSelector->setCurrentIndex(0);
     ui->addPositionLetterSelector->setCurrentIndex(0);
     ui->addPositionLetterSelector->setCurrentIndex(0);
+
+    QPalette sample_palette;
+    sample_palette.setColor(QPalette::Window, Qt::white);
+    ui->colorLabel->setAutoFillBackground(true);
+    ui->colorLabel->setPalette(sample_palette);
+    last_color = Qt::white;
+    ui->cameraRadioButton->setChecked(true);
 
     return *this;
 }
@@ -143,16 +165,36 @@ void MainWindow::_on_pushButtonDelete_clicked()
 
 void MainWindow::_on_pushButtonApplySpector_clicked()
 {
-   Vector3D ref = Vector3D(ui->refSpinBox_3->value());
+   Vector3D ref = Vector3D(1.0f) - Vector3D(ui->refSpinBox_3->value());
    double p = ui->pSpinBox->value();
    bool current_material = ui->tabWidgetSpector->currentIndex() == 0;
+   Vector3D intensity(double(last_color.red()) / 255,
+                      double(last_color.green()) / 255,
+                      double(last_color.blue()) / 255);
 
-   ChangeLightSourceColorOrMaterialParamsScene *command = new ChangeLightSourceColorOrMaterialParamsScene(current_material, ref, p, Vector3D());
+   ChangeLightSourceColorOrMaterialParamsScene *command = new ChangeLightSourceColorOrMaterialParamsScene(current_material, ref, p, intensity);
 
    if (_execute_with_wait(command))
        _draw();
 
    delete command;
+}
+
+void MainWindow::_on_pushButtonApplyCameraChanges_clicked()
+{
+    Vector3D kd(ui->dx->value(), ui->dy->value(), ui->dz->value());
+    Vector3D o(double(ui->ox->value()) * M_PI / 180.0f,
+               double(ui->oy->value()) * M_PI / 180.0f,
+               double(ui->oz->value()) * M_PI / 180.0f);
+
+    MoveAndRotateScene *command = new MoveAndRotateScene(ui->cameraRadioButton->isChecked(),
+                                                         ui->tabWidgetMoveCamera->currentIndex() == 1,
+                                                         kd, o);
+
+    if (_execute_with_wait(command))
+        _draw();
+
+    delete command;
 }
 
 MainWindow::~MainWindow() {

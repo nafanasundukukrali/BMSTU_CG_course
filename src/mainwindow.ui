@@ -641,7 +641,7 @@
                   <double>0.000000000000000</double>
                  </property>
                  <property name="maximum">
-                  <double>500.000000000000000</double>
+                  <double>1000.000000000000000</double>
                  </property>
                  <property name="singleStep">
                   <double>1.000000000000000</double>
@@ -661,20 +661,26 @@
                <item row="2" column="0">
                 <widget class="QLabel" name="refLabel">
                  <property name="text">
-                  <string>Коэффициент отражения</string>
+                  <string>Коэффициент диффузного отражения</string>
                  </property>
                 </widget>
                </item>
                <item row="2" column="1">
                 <widget class="QDoubleSpinBox" name="refSpinBox_3">
+                 <property name="minimum">
+                  <double>0.000000000000000</double>
+                 </property>
                  <property name="maximum">
-                  <double>500.000000000000000</double>
+                  <double>1.010000000000000</double>
                  </property>
                  <property name="singleStep">
-                  <double>100000.000000000000000</double>
+                  <double>0.010000000000000</double>
+                 </property>
+                 <property name="stepType">
+                  <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
                  </property>
                  <property name="value">
-                  <double>0.300000000000000</double>
+                  <double>0.700000000000000</double>
                  </property>
                 </widget>
                </item>
@@ -698,14 +704,14 @@
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="selectColorButton">
                <property name="text">
                 <string>Выбор цвета</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label_8">
+              <widget class="QLabel" name="colorLabel">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>40</horstretch>
@@ -719,7 +725,7 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">QLabel { background-color : red;  }</string>
+                <string notr="true"/>
                </property>
                <property name="text">
                 <string/>
@@ -779,14 +785,14 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QRadioButton" name="radioButton_2">
+           <widget class="QRadioButton" name="cameraRadioButton">
             <property name="text">
              <string>Камера</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton">
+           <widget class="QRadioButton" name="sourceRadioButton">
             <property name="text">
              <string>Источник света</string>
             </property>
@@ -815,7 +821,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="TabMove">
            <attribute name="title">
@@ -842,7 +848,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="dx"/>
+              <widget class="QDoubleSpinBox" name="dx">
+               <property name="decimals">
+                <number>0</number>
+               </property>
+               <property name="minimum">
+                <double>-5000.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>5000.000000000000000</double>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_11">
@@ -855,7 +871,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="dy"/>
+              <widget class="QDoubleSpinBox" name="dy">
+               <property name="decimals">
+                <number>0</number>
+               </property>
+               <property name="minimum">
+                <double>-5000.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>5000.000000000000000</double>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_12">
@@ -868,7 +894,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="dz"/>
+              <widget class="QDoubleSpinBox" name="dz">
+               <property name="decimals">
+                <number>0</number>
+               </property>
+               <property name="minimum">
+                <double>-5000.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>5000.000000000000000</double>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -898,7 +934,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="ox"/>
+              <widget class="QDoubleSpinBox" name="ox">
+               <property name="decimals">
+                <number>0</number>
+               </property>
+               <property name="minimum">
+                <double>-360.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>360.000000000000000</double>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_14">
@@ -911,7 +957,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="oy"/>
+              <widget class="QDoubleSpinBox" name="oy">
+               <property name="decimals">
+                <number>0</number>
+               </property>
+               <property name="minimum">
+                <double>-360.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>360.000000000000000</double>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_15">
@@ -924,7 +980,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="oz"/>
+              <widget class="QDoubleSpinBox" name="oz">
+               <property name="decimals">
+                <number>0</number>
+               </property>
+               <property name="minimum">
+                <double>-360.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>360.000000000000000</double>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>

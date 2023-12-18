@@ -12,6 +12,18 @@
 #include <loaddialog/loaddialog.h>
 #include <facade/facade.h>
 #include <loaddialog/loaddialog.h>
+#include <QColor>
+#include <QGraphicsPixmapItem>
+#include <QMessageBox>
+#include <QProgressDialog>
+#include <QFuture>
+#include <QPalette>
+#include <QtConcurrent/QtConcurrent>
+#include <QColorDialog>
+#include <QColor>
+#include <command/scenecommand/scenecommand.h>
+#include <QString>
+#include <QRgb>
 
 class MainWindow : public QMainWindow
 {
@@ -24,7 +36,10 @@ private slots:
     void _on_pushButtonAdd_clicked();
     void _on_pushButtonDelete_clicked();
     void _on_pushButtonApplySpector_clicked();
-    void _on_pushButtonApplyCameraChanges_clicked() {};
+    void _on_pushButtonSelectColor_clicked();
+    void _on_camera_radio_button_clicked();
+    void _on_intensity_radio_button_clicked();
+    void _on_pushButtonApplyCameraChanges_clicked();
 
 private:
     MainWindow &_update_scene() { return *this; };
@@ -35,7 +50,7 @@ private:
     MainWindow &_add_select_position_variants();
     void _draw();
     bool _execute_with_wait(BaseCommand *command);
-
+    QColor last_color;
     Ui::MainWindow *ui;
     std::shared_ptr<QPixmap> _scene;
     std::unique_ptr<Facade> _facade;

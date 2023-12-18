@@ -35,8 +35,6 @@ set(PROJECT_SOURCES
   object/visibleobject/visibleobject.h
   object/visibleobject/box/box.h
   object/visibleobject/box/box.cpp
-  object/visibleobject/sphere/sphere.h
-  object/visibleobject/sphere/sphere.cpp
   object/visibleobject/triangle/triangle.h
   object/visibleobject/triangle/triangle.cpp
   object/visibleobject/model/model.h
@@ -78,12 +76,24 @@ set(PROJECT_SOURCES
   mainwindow.cpp
   reader/stl_reader.h
   loaddialog/loaddialog.h loaddialog/loaddialog.cpp
-  main_release.cpp
 )
 
-add_executable(visual-chess
-    ${PROJECT_SOURCES}
-)
+string(TOUPPER ${CMAKE_BUILD_TYPE} CMAKE_BUILD_TYPE_UP)
+if (${CMAKE_BUILD_TYPE_UP} STREQUAL "DEBUG")
+     SET(CMAKE_BUILD_TYPE Debug)
+    add_executable(visual-chess
+        main_test.cpp
+        ${PROJECT_SOURCES})
+else()
+    add_executable(visual-chess
+        main_release.cpp
+        ${PROJECT_SOURCES})
+endif()
+
+#add_executable(visual-chess
+#    main_release.cpp
+#    ${PROJECT_SOURCES}
+#)
 
 include_directories(
 ${PROJECT_SOURCE_DIR}/utils
