@@ -137,7 +137,7 @@ bool MainWindow::_execute_with_wait(BaseCommand *command)
 
 void MainWindow::_on_pushButtonAdd_clicked()
 {
-    uint id = ui->listOfChessFigures->currentIndex().column();
+    uint id = ui->listOfChessFigures->currentIndex().row();
     uint color = ui->colorFigureSelector->currentIndex();
     uint x = ui->addPositionLetterSelector->currentIndex();
     uint y = ui->addPositionNumberSelector->currentIndex();
